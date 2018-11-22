@@ -5,10 +5,11 @@ import Behaviours.Damageable;
 import Behaviours.Healable;
 import Behaviours.Playerables;
 import Rooms.TreasureRoom;
+import game.Player;
 
 import java.util.ArrayList;
 
-public abstract class Magician implements Damageable, Attackable, Healable, Playerables {
+public abstract class Magician extends Player implements Damageable, Attackable, Healable{
 
     private int healthValue;
     private int attackValue;
@@ -18,29 +19,31 @@ public abstract class Magician implements Damageable, Attackable, Healable, Play
     private int wallet;
 
     public Magician(int healthValue, int attackValue, Creature creature, String name, int wallet) {
-        this.healthValue = healthValue;
+        super(healthValue, wallet);
+
+//        this.healthValue = healthValue;
         this.attackValue = attackValue;
         this.creature = creature;
         this.name = name;
         this.spells = new ArrayList<SpellType>();
-        this.wallet = 0;
+//        this.wallet = 0;
     }
 
-    public int getWallet() {
-        return wallet;
-    }
-
-    public void setWallet(int wallet) {
-        this.wallet = wallet;
-    }
-
-    public int getHealthValue() {
-        return healthValue;
-    }
-
-    public void setHealthValue(int healthValue) {
-        this.healthValue = healthValue;
-    }
+//    public int getWallet() {
+//        return wallet;
+//    }
+//
+//    public void setWallet(int wallet) {
+//        this.wallet = wallet;
+//    }
+//
+//    public int getHealthValue() {
+//        return healthValue;
+//    }
+//
+//    public void setHealthValue(int healthValue) {
+//        this.healthValue = healthValue;
+//    }
 
     public int getAttackValue() {
         return attackValue;
@@ -66,21 +69,21 @@ public abstract class Magician implements Damageable, Attackable, Healable, Play
         this.spells.add(spell.getSpellType());
     }
 
-    public void takeDamage(int damage) {
-        this.healthValue -= damage;
-    }
+//    public void takeDamage(int damage) {
+//        this.healthValue -= damage;
+//    }
 
     public void attack(Damageable damageable){
         damageable.takeDamage(this.attackValue);
     }
 
-    public void canBeHealed(int potionValue){
-        this.healthValue += potionValue;
-    }
-
-
-    public void collectTreasure(TreasureRoom treasureRoom) {
-        this.wallet += treasureRoom.getTreasureValue();
-        treasureRoom.emptyTreasure();
-    }
+//    public void canBeHealed(int potionValue){
+//        this.healthValue += potionValue;
+//    }
+//
+//
+//    public void collectTreasure(TreasureRoom treasureRoom) {
+//        this.wallet += treasureRoom.getTreasureValue();
+//        treasureRoom.emptyTreasure();
+//    }
 }

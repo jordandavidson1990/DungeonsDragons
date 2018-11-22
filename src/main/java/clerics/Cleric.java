@@ -7,7 +7,7 @@ import Behaviours.Playerables;
 
 import java.util.ArrayList;
 
-public class Cleric implements Damageable, Healingable, Playerables {
+public class Cleric implements Damageable, Healingable {
 
     private int healthValue;
     private ArrayList<Potion> potions;

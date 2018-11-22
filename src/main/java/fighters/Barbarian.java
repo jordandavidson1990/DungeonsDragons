@@ -4,8 +4,8 @@ public class Barbarian extends Fighter {
 
     private String weapon;
 
-    public Barbarian(int healthValue, int attackValue, String weapon) {
-        super(healthValue, attackValue);
+    public Barbarian(int healthValue, int attackValue, int wallet, String weapon) {
+        super(healthValue, attackValue, wallet);
         this.weapon = weapon;
     }
 

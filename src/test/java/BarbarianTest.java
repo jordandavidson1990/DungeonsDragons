@@ -27,7 +27,7 @@ public class BarbarianTest {
         cleric.addPotionToPotions(potion);
         enemy = new Enemy("Goblin", 15, 5);
         weapons = new ArrayList<String>();
-        barbarian = new Barbarian(10, 5, "Sword");
+        barbarian = new Barbarian(10, 5, 0,"Sword" );
     }
 
     @Test
