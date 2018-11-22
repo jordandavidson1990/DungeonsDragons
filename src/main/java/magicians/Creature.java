@@ -1,6 +1,9 @@
 package magicians;
 
-public class Creature {
+import Behaviours.Attackable;
+import Behaviours.Damageable;
+
+public class Creature implements Attackable {
 
     private String type;
     private int attackValue;
@@ -26,5 +29,9 @@ public class Creature {
 
     public void setHealthValue(int healthValue) {
         this.healthValue = healthValue;
+    }
+
+    public void attack(Damageable damageable) {
+        damageable.takeDamage(this.attackValue);
     }
 }

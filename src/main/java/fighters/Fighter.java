@@ -4,6 +4,7 @@ import Behaviours.Attackable;
 import Behaviours.Damageable;
 import Behaviours.Healable;
 import Behaviours.Playerables;
+import Rooms.EnemyRoom;
 import game.Player;
 
 import java.util.ArrayList;
@@ -44,10 +45,12 @@ public abstract class Fighter extends Player implements Damageable, Attackable, 
     public void attack(Damageable damageable){
         damageable.takeDamage(this.attackValue);
     }
-//
-//    public void canBeHealed(int potionValue){
-//        this.healthValue += potionValue;
-//    }
 
-
+    public void enterEnemyRoomAsAggressive(EnemyRoom enemyRoom) {
+        this.attack(enemyRoom.getEnemy());
+        this.takeDamage(enemyRoom.getEnemy().getAttackValue());
+        if(enemyRoom.getEnemy().getHealthValue()<=0){
+            enemyRoom.setEnemy(null);
+        }
+    }
 }

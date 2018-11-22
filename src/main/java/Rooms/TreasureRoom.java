@@ -2,7 +2,7 @@ package Rooms;
 
 import java.util.ArrayList;
 
-public class TreasureRoom extends Room{
+public class TreasureRoom{
 
     private int treasure;
 

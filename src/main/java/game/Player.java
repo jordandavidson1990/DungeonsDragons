@@ -5,17 +5,20 @@ import Behaviours.Healable;
 import Rooms.EnemyRoom;
 import Rooms.Room;
 import Rooms.TreasureRoom;
+import fighters.Armour;
 
 public class Player implements Damageable, Healable {
 
     private int healthValue;
     private int wallet;
     private Room location;
+    private Armour armour;
 
     public Player(int healthValue, int wallet) {
         this.healthValue = healthValue;
         this.wallet = wallet;
         this.location = null;
+        this.armour = armour;
     }
 
     public int getHealthValue() {
@@ -38,13 +41,14 @@ public class Player implements Damageable, Healable {
         this.healthValue -= damage;
     }
 
-//    public void attack(Damageable damageable){
-//        damageable.takeDamage(this.attackValue);
-//    }
-//
     public void canBeHealed(int potionValue){
         this.healthValue += potionValue;
     }
+
+    public void enterEnemyRoom(EnemyRoom enemyRoom) {
+
+    }
+
 
     public void collectTreasure(TreasureRoom treasureRoom) {
         this.wallet += treasureRoom.getTreasureValue();
@@ -55,11 +59,15 @@ public class Player implements Damageable, Healable {
         this.collectTreasure(treasureRoom);
     }
 
-    public void enterEnemyRoom(EnemyRoom enemyRoom) {
-        this.location = enemyRoom;
+    public void enterRoom(Room room) {
+        this.location = room;
     }
 
     public Room getLocation() {
         return this.location;
+    }
+
+    public void equipArmour(Armour armour) {
+        this.healthValue+= armour.getDefensive();
     }
 }

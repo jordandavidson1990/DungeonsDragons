@@ -3,6 +3,7 @@ import Rooms.Enemy;
 import clerics.Cleric;
 import clerics.Potion;
 import clerics.PotionType;
+import fighters.Armour;
 import fighters.Barbarian;
 import org.junit.Test;
 import org.junit.Before;
@@ -19,6 +20,7 @@ public class BarbarianTest {
     Enemy enemy;
     Cleric cleric;
     Potion potion;
+    Armour armour;
 
     @Before
     public void setUp() throws Exception {
@@ -27,6 +29,7 @@ public class BarbarianTest {
         cleric.addPotionToPotions(potion);
         enemy = new Enemy("Goblin", 15, 5);
         weapons = new ArrayList<String>();
+        armour = new Armour(10);
         barbarian = new Barbarian(10, 5, 0,"Sword" );
     }
 
@@ -71,5 +74,11 @@ public class BarbarianTest {
         enemy.attack(barbarian); // should reduce health to 5
         cleric.heal(barbarian, potion); // tonic has value of 7
         assertEquals(12, barbarian.getHealthValue());
+    }
+
+    @Test
+    public void canEquipArmour() {
+        barbarian.equipArmour(armour);
+        assertEquals(20, barbarian.getHealthValue());
     }
 }

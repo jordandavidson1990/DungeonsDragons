@@ -4,10 +4,12 @@ import Behaviours.Damageable;
 import Behaviours.Healable;
 import Behaviours.Healingable;
 import Behaviours.Playerables;
+import Rooms.EnemyRoom;
 
 import java.util.ArrayList;
 
-public class Cleric implements Damageable, Healingable {
+public class Cleric implements Damageable, Healingable
+{
 
     private int healthValue;
     private ArrayList<Potion> potions;
@@ -40,5 +42,9 @@ public class Cleric implements Damageable, Healingable {
     public void heal(Healable healable, Potion potion){
         int potionValue = potion.getPotionType().getHealingValue();
         healable.canBeHealed(potionValue);
+    }
+
+    public void enterEnemyRoomAsPassive(EnemyRoom enemyRoom) {
+        this.takeDamage(enemyRoom.getEnemy().getAttackValue());
     }
 }

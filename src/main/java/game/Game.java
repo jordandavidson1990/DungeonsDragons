@@ -30,4 +30,8 @@ public class Game {
     public int getPlayerCount() {
         return this.players.size();
     }
+
+    public int getNumberOfRooms() {
+        return this.treasureRooms.size() + this.enemyRooms.size();
+    }
 }

@@ -4,18 +4,19 @@ import Behaviours.Attackable;
 import Behaviours.Damageable;
 import Behaviours.Healable;
 import Behaviours.Playerables;
+import Rooms.EnemyRoom;
 import Rooms.TreasureRoom;
 import game.Player;
 
 import java.util.ArrayList;
 
-public abstract class Magician extends Player implements Damageable, Attackable, Healable{
+public abstract class Magician extends Player implements Damageable, Attackable, Healable {
 
     private int healthValue;
     private int attackValue;
     private Creature creature;
     private String name;
-    private ArrayList<SpellType>spells;
+    private ArrayList<SpellType> spells;
     private int wallet;
 
     public Magician(int healthValue, int attackValue, Creature creature, String name, int wallet) {
@@ -28,22 +29,6 @@ public abstract class Magician extends Player implements Damageable, Attackable,
         this.spells = new ArrayList<SpellType>();
 //        this.wallet = 0;
     }
-
-//    public int getWallet() {
-//        return wallet;
-//    }
-//
-//    public void setWallet(int wallet) {
-//        this.wallet = wallet;
-//    }
-//
-//    public int getHealthValue() {
-//        return healthValue;
-//    }
-//
-//    public void setHealthValue(int healthValue) {
-//        this.healthValue = healthValue;
-//    }
 
     public int getAttackValue() {
         return attackValue;
@@ -65,7 +50,7 @@ public abstract class Magician extends Player implements Damageable, Attackable,
         return this.spells.size();
     }
 
-    public void addSpell(Spell spell){
+    public void addSpell(Spell spell) {
         this.spells.add(spell.getSpellType());
     }
 
@@ -73,17 +58,16 @@ public abstract class Magician extends Player implements Damageable, Attackable,
 //        this.healthValue -= damage;
 //    }
 
-    public void attack(Damageable damageable){
+    public void attack(Damageable damageable) {
         damageable.takeDamage(this.attackValue);
     }
 
-//    public void canBeHealed(int potionValue){
-//        this.healthValue += potionValue;
-//    }
-//
-//
-//    public void collectTreasure(TreasureRoom treasureRoom) {
-//        this.wallet += treasureRoom.getTreasureValue();
-//        treasureRoom.emptyTreasure();
-//    }
+    public void enterEnemyRoomAsAggressiveMagician(EnemyRoom enemyRoom) {
+        this.attack(enemyRoom.getEnemy());
+        this.takeDamage(enemyRoom.getEnemy().getAttackValue());
+        this.creature.attack(enemyRoom.getEnemy());
+        if (enemyRoom.getEnemy().getHealthValue() <= 0) {
+            enemyRoom.setEnemy(null);
+        }
+    }
 }
